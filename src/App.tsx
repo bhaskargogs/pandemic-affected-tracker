@@ -1,13 +1,12 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.scss'
+import SelectDistrict from './components/SelectDistrict/SelectDistrict'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>{process.env.REACT_APP_API_URL}</div>
-      </header>
+    <div className="container">
+      <h3 className="m-3 d-flex justify-content-center">COVID-19 Tracker application</h3>
+      <SelectDistrict />
     </div>
   )
 }
