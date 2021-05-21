@@ -13,6 +13,7 @@ export type RegionRequestProps = {
 }
 
 export type RegionData = {
-  name: string
-  ags: string
+  idx: number
+  name?: string
+  ags?: string
 }
