@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { fetchAllRegionData, fetchDistricts, fetchRegionData } from '../../api/api'
+import { fetchDistricts, fetchRegionData } from '../../api/api'
 import { Region, RegionData } from '../../types'
 import LineChart from '../LineChart/LineChart'
 import './SelectDistrict.scss'
