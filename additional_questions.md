@@ -3,7 +3,8 @@
 
 1. How long did you spend on the coding test? What would you add to your solution if you had more time?
 
-**Ans**: I spent a total of 4 days on the coding test. If I had more time, I would have done the following:
+**Ans**: I spent a total of 40 hours on the coding test. If I had more time, I would have done the following:
+
  ```
  (a) I would have added a zip code which could deduce the district based on it
  
