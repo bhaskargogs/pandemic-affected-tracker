@@ -17,6 +17,7 @@ docs
 # testing
 /coverage
 .nyc_output
+**/__snapshots__/**
 
 # production
 /build

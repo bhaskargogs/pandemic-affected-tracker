@@ -12,6 +12,15 @@ describe('<App />', () => {
   test('It should mount', () => {
     expect(component.length).toBe(1)
   })
+
+  test('It should match Snapshot', () => {
+    expect(component.getElements()).toMatchSnapshot()
+  })
+
+  test('It should contain SelectDistrict component', () => {
+    const selectDistrictComponent = component.find('SelectDistrict')
+    expect(selectDistrictComponent).toHaveLength(1)
+  })
 })
 
 /*

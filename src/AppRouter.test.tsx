@@ -13,4 +13,8 @@ describe('<AppRouter />', () => {
   test('renders without crashing', () => {
     expect(component.length).toBe(1)
   })
+
+  test('It should match Snapshot', () => {
+    expect(component.getElements()).toMatchSnapshot()
+  })
 })
