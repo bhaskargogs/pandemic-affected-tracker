@@ -1,15 +1,13 @@
-import { Select } from '@material-ui/core'
-import { createShallow } from '@material-ui/core/test-utils'
-import { ShallowWrapper } from 'enzyme'
+import { shallow, ShallowWrapper } from 'enzyme'
 import React from 'react'
 import SelectDistrict from './SelectDistrict'
 
 describe('<SelectDistrict />', () => {
   let component: ShallowWrapper
-  let shallow
-
+  jest.mock('./SelectDistrict')
+  // let shallow
   beforeEach(() => {
-    shallow = createShallow()
+    // shallow = createShallow()
     component = shallow(<SelectDistrict />)
   })
 
@@ -21,21 +19,9 @@ describe('<SelectDistrict />', () => {
     expect(component.getElements()).toMatchSnapshot()
   })
 
-  test('It should have 2 select boxes', () => {
-    const districtSelect = component.find('#district-select-label')
-    expect(districtSelect).toHaveLength(1)
-    expect(districtSelect.text()).toEqual('Select District')
-    const daySelect = component.find('#days-select-label')
-    expect(daySelect).toHaveLength(1)
-    expect(daySelect.text()).toEqual('Select Days')
-  })
-
-  test('user selects days', () => {
-    const daysSelect = component
-      .find(Select)
-      .last()
-      .simulate('change', { target: { value: '7' } })
-    expect(daysSelect.text()).toContain('1 week')
+  test('It should have SelectComponent', () => {
+    const selectComponent = component.find('SelectComponent')
+    expect(selectComponent).toHaveLength(2)
   })
 
   test('It should have Line component', () => {
