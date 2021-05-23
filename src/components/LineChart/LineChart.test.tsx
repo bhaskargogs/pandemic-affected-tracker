@@ -1,9 +1,9 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, ShallowWrapper } from 'enzyme'
 import LineChart from './LineChart'
 
 describe('<LineChart />', () => {
-  let component: unknown
+  let component: ShallowWrapper
 
   const histories = [
     { date: '20-05-2021', weekIncidence: 59.565 },

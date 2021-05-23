@@ -1,10 +1,10 @@
 // src/AppRouter.test.tsx
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, ShallowWrapper } from 'enzyme'
 import AppRouter from './AppRouter'
 
 describe('<AppRouter />', () => {
-  let component
+  let component: ShallowWrapper
 
   beforeEach(() => {
     component = shallow(<AppRouter />)

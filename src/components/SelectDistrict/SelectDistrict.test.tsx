@@ -1,13 +1,15 @@
 import { Select } from '@material-ui/core'
-import { mount, shallow } from 'enzyme'
-import React, { ComponentProps } from 'react'
-import Sinon from 'sinon'
+import { createShallow } from '@material-ui/core/test-utils'
+import { ShallowWrapper } from 'enzyme'
+import React from 'react'
 import SelectDistrict from './SelectDistrict'
 
 describe('<SelectDistrict />', () => {
-  let component: unknown
+  let component: ShallowWrapper
+  let shallow
 
   beforeEach(() => {
+    shallow = createShallow()
     component = shallow(<SelectDistrict />)
   })
 
