@@ -11,7 +11,7 @@ A COVID-19 tracker application to keep track of incidence from past for differen
 * React Router
 * Chart.js
 
-## Setup
+## Setup Project
 
 Run the following to setup using yarn:
 ```
@@ -23,6 +23,18 @@ Run the following to setup using npm:
 ```
 git clone https://github.com/bhaskargogs/pandemic-affected-tracker.git
 npm install
+```
+
+# Setup Environment
+
+Create two files for Development `.env.development` and `.env.production` inside `config/` folder which should have the following content:
+
+An example for `.env.development`:
+
+```
+REACT_APP_API_URL=http://localhost:3000
+REACT_APP_RKI_API_ENDPOINT=https://api.corona-zahlen.org/districts
+REACT_APP_RKI_HISTORY=history/incidence
 ```
 
 # Tests
