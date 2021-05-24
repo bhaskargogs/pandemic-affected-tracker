@@ -1,5 +1,5 @@
 import { MenuItem } from '@material-ui/core'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { fetchDistricts, fetchRegionData } from '../../api/api'
 import { selectFrequency } from '../../redux/daysSlice'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -35,27 +35,38 @@ const SelectDistrict: React.FC = () => {
     getDistricts()
   }, [])
 
+  const districtData = useMemo(() => {
+    return districtOptions
+  }, [districtOptions])
+
+  const historiesData = useMemo(() => {
+    return histories
+  }, [histories])
+
   return (
     <div>
-      <div className="m-3 d-flex justify-content-center">
-        <SelectComponent labelId="district-select-label" id="district-select" label="Select District" value={region || ''} onChange={regionHandler}>
-          {districtOptions &&
-            districtOptions.map((district) => (
+      {districtData ? (
+        <div className="m-3 d-flex justify-content-center">
+          <SelectComponent labelId="district-select-label" id="district-select" label="Select District" value={region || ''} onChange={regionHandler}>
+            {districtData.map((district) => (
               <MenuItem key={district.idx} value={district.ags}>
                 {district.name}
               </MenuItem>
             ))}
-        </SelectComponent>
-        <SelectComponent labelId="days-select-label" id="days-select" label="Select Days" value={days} onChange={daysHandler}>
-          {daysList.map((frequency) => (
-            <MenuItem key={frequency.id} value={frequency.value}>
-              {frequency.name}
-            </MenuItem>
-          ))}
-        </SelectComponent>
-      </div>
+          </SelectComponent>
+          <SelectComponent labelId="days-select-label" id="days-select" label="Select Days" value={days} onChange={daysHandler}>
+            {daysList.map((frequency) => (
+              <MenuItem key={frequency.id} value={frequency.value}>
+                {frequency.name}
+              </MenuItem>
+            ))}
+          </SelectComponent>
+        </div>
+      ) : (
+        <div className="m-3 d-flex justify-content-center">Loading...</div>
+      )}
 
-      <LineChart histories={histories} />
+      <LineChart histories={historiesData} />
     </div>
   )
 }
