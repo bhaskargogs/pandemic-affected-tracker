@@ -34,7 +34,7 @@ export const fetchDistricts = async () => {
     const response = await axios.get(uri)
     const responseObject = Object.keys(response.data.data)
     const responseArray: RegionData[] = []
-    responseObject.map((value, index) => {
+    responseObject.forEach((value, index) => {
       const agsValue = response.data.data[value].ags
       const nameValue = response.data.data[value].name
       responseArray.push({ idx: index, ags: agsValue, name: nameValue })
