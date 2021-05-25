@@ -9,13 +9,10 @@ import SelectComponent from '../SelectComponent/SelectComponent'
 import './SelectDistrict.scss'
 
 const SelectDistrict: React.FC = () => {
-  const daysList = useAppSelector((state) => state.days.daysList)
-  const selectedDays = useAppSelector((state) => state.days.selectedDays)
-  const dispatch = useAppDispatch()
   const [histories, setHistories] = useState<Region[]>([])
   const [districtOptions, setDistrictOptions] = useState<RegionData[]>([])
   const [region, setRegion] = useState<string | null>(null)
-  const [days, setDays] = useState<number>(selectedDays.value)
+  const [days, setDays] = useState<number>(7)
 
   const regionHandler = async (event: ChangeEvent<{ value: unknown }>) => {
     setRegion(event.target.value as string)
@@ -24,7 +21,6 @@ const SelectDistrict: React.FC = () => {
 
   const daysHandler = async (event: ChangeEvent<{ value: unknown }>) => {
     setDays(event.target.value as number)
-    dispatch(selectFrequency(event.target.value as number))
     setHistories(await fetchRegionData(region, event.target.value as number))
   }
 
@@ -55,11 +51,12 @@ const SelectDistrict: React.FC = () => {
             ))}
           </SelectComponent>
           <SelectComponent labelId="days-select-label" id="days-select" label="Select Days" value={days} onChange={daysHandler}>
-            {daysList.map((frequency) => (
-              <MenuItem key={frequency.id} value={frequency.value}>
-                {frequency.name}
-              </MenuItem>
-            ))}
+            <MenuItem value={7}>1 week</MenuItem>
+            <MenuItem value={31}>1 month</MenuItem>
+            <MenuItem value={90}>3 months</MenuItem>
+            <MenuItem value={183}>6 months</MenuItem>
+            <MenuItem value={365}>1 year</MenuItem>
+            <MenuItem value={districtOptions.length}>All</MenuItem>
           </SelectComponent>
         </div>
       ) : (
