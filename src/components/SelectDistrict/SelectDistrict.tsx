@@ -10,12 +10,11 @@ import './SelectDistrict.scss'
 
 const SelectDistrict: React.FC = () => {
   const daysList = useAppSelector((state) => state.days.daysList)
-  const selectedDays = useAppSelector((state) => state.days.selectedDays)
   const dispatch = useAppDispatch()
   const [histories, setHistories] = useState<Region[]>([])
   const [districtOptions, setDistrictOptions] = useState<RegionData[]>([])
   const [region, setRegion] = useState<string | null>(null)
-  const [days, setDays] = useState<number>(selectedDays.value)
+  const [days, setDays] = useState<number>(useAppSelector((state) => state.days.selectedDays).value)
 
   const regionHandler = async (event: ChangeEvent<{ value: unknown }>) => {
     setRegion(event.target.value as string)
