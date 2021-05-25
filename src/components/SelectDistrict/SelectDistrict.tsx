@@ -1,8 +1,6 @@
 import { MenuItem } from '@material-ui/core'
 import React, { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { fetchDistricts, fetchRegionData } from '../../api/api'
-import { selectFrequency } from '../../redux/daysSlice'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Region, RegionData } from '../../types'
 import LineChart from '../LineChart/LineChart'
 import SelectComponent from '../SelectComponent/SelectComponent'
