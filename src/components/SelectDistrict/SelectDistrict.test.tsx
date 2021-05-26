@@ -5,9 +5,8 @@ import SelectDistrict from './SelectDistrict'
 describe('<SelectDistrict />', () => {
   let component: ShallowWrapper
   jest.mock('./SelectDistrict')
-  // let shallow
+
   beforeEach(() => {
-    // shallow = createShallow()
     component = shallow(<SelectDistrict />)
   })
 
