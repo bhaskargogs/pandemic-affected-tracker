@@ -1,12 +1,9 @@
 /* eslint-disable import/no-cycle */
 
 import { configureStore } from '@reduxjs/toolkit'
-import { daysSlice } from './daysSlice'
 
 const store = configureStore({
-  reducer: {
-    days: daysSlice.reducer,
-  },
+  reducer: {},
 })
 
 export default store

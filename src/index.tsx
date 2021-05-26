@@ -3,18 +3,11 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import App from './App'
 import './index.scss'
-import store from './redux/store'
 
 // Single-page application (SPA)
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want to Pre-render with react-snap
 // Step 1: install $ yarn add --dev react-snap
