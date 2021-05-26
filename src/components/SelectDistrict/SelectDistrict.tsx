@@ -59,7 +59,9 @@ const SelectDistrict: React.FC = () => {
           </SelectComponent>
         </div>
       ) : (
-        <div className="m-3 d-flex justify-content-center">Loading...</div>
+        <div className="m-3 d-flex justify-content-center">
+          <p>Loading...</p>
+        </div>
       )}
 
       <LineChart histories={historiesData} />
