@@ -4,12 +4,23 @@ A COVID-19 tracker application to keep track of incidence from past for differen
 ## Tools used
 
 * Yarn and npm
-* env-cmd `(npm install -g env-cmd)`
 * React 17 + Typescript
 * Bootstrap
 * Jest and Enzyme
 * React Router
 * Chart.js
+
+## Setup Environment
+
+Create two files for Development `.env.development` and `.env.production` inside `config/` folder which should have the following content:
+
+An example for `.env.development`:
+
+```
+REACT_APP_API_URL=http://localhost:3000
+REACT_APP_RKI_API_ENDPOINT=https://api.corona-zahlen.org/districts
+REACT_APP_RKI_HISTORY=history/incidence
+```
 
 ## Setup Project
 
@@ -25,19 +36,9 @@ git clone https://github.com/bhaskargogs/pandemic-affected-tracker.git
 npm install
 ```
 
-# Setup Environment
-
-Create two files for Development `.env.development` and `.env.production` inside `config/` folder which should have the following content:
-
-An example for `.env.development`:
-
-```
-REACT_APP_API_URL=http://localhost:3000
-REACT_APP_RKI_API_ENDPOINT=https://api.corona-zahlen.org/districts
-REACT_APP_RKI_HISTORY=history/incidence
-```
-
 # Tests
+
+## Unit tests
 
 Run the following to run unit tests:
 
@@ -48,6 +49,19 @@ or
 
 ```
 yarn test
+```
+
+## Integration tests
+
+Run the following to run integration tests:
+
+```
+npm run test:e2e
+```
+or
+
+```
+yarn test:e2e
 ```
 
 # Running the application in development
