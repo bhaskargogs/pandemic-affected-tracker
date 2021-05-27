@@ -1,5 +1,5 @@
 import { MenuItem } from '@material-ui/core'
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { fetchDistricts, fetchRegionData } from '../../api/api'
 import { Region, RegionData } from '../../types'
 import LineChart from '../LineChart/LineChart'
@@ -12,13 +12,13 @@ const SelectDistrict: React.FC = () => {
   const [region, setRegion] = useState<string>('')
   const [days, setDays] = useState<number>(7)
 
-  const regionHandler = async (event: ChangeEvent<{ value: unknown }>) => {
+  const regionHandler = async (event: React.ChangeEvent<{ value: unknown }>) => {
     setHistories([])
     setRegion(event.target.value as string)
     setHistories(await fetchRegionData(event.target.value as string, days))
   }
 
-  const daysHandler = async (event: ChangeEvent<{ value: unknown }>) => {
+  const daysHandler = async (event: React.ChangeEvent<{ value: unknown }>) => {
     setHistories([])
     setDays(event.target.value as number)
     setHistories(await fetchRegionData(region, event.target.value as number))

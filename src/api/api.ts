@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { RegionData } from '../types'
+import { Region, RegionData } from '../types'
 
 const uri = `${process.env.REACT_APP_RKI_API_ENDPOINT}`
-// eslint-disable-next-line consistent-return
-export const fetchRegionData = async (ags: string | null = null, frequency: number | '') => {
+export const fetchRegionData = async (ags: string | null = null, frequency: number | ''): Promise<Region[]> => {
   let districtUri = uri
   if (ags && frequency) {
     districtUri = `${uri}/${ags}/${process.env.REACT_APP_RKI_HISTORY}/${frequency}`
@@ -16,7 +15,7 @@ export const fetchRegionData = async (ags: string | null = null, frequency: numb
   }
 }
 
-export const fetchAllRegionData = async (ags: string | null = null) => {
+export const fetchAllRegionData = async (ags: string | null = null): Promise<Region[]> => {
   let allDistrictUri = uri
   if (ags) {
     allDistrictUri = `${allDistrictUri}/${ags}/${process.env.REACT_APP_RKI_HISTORY}/`
@@ -29,7 +28,7 @@ export const fetchAllRegionData = async (ags: string | null = null) => {
   }
 }
 
-export const fetchDistricts = async () => {
+export const fetchDistricts = async (): Promise<RegionData[]> => {
   try {
     const response = await axios.get(uri)
     const responseObject = Object.keys(response.data.data)
