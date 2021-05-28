@@ -3,7 +3,6 @@ import { act, cleanup, render } from '@testing-library/react'
 import axios from 'axios'
 import { shallow, ShallowWrapper } from 'enzyme'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { RegionData } from '../../types'
 import SelectDistrict from './SelectDistrict'
 
@@ -15,7 +14,8 @@ const districtOptions: RegionData[] = [
 
 describe('<SelectDistrict />', () => {
   let component: ShallowWrapper
-  jest.mock('./SelectDistrict')
+  jest.mock('axios')
+  const mockAxios = axios as jest.Mocked<typeof axios>
 
   // it('renders without crashing', () => {
   //   const div = document.createElement('div')
@@ -24,7 +24,7 @@ describe('<SelectDistrict />', () => {
   // })
 
   beforeEach(() => {
-    axios.get = jest.fn(() => Promise.resolve({ data: districtOptions }))
+    mockAxios.get.mockReturnValue({ data: { data: districtOptions } })
     component = shallow(<SelectDistrict />)
   })
 
@@ -40,8 +40,8 @@ describe('<SelectDistrict />', () => {
 
   test('It should display "Loading" while rendering districts', async () => {
     await act(async () => {
-      const { getByText } = render(<SelectDistrict />)
-      getByText('Loading...')
+      const { getByLabelText } = render(<SelectDistrict />)
+      getByLabelText('Select District')
     })
   })
 

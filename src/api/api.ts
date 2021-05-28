@@ -30,15 +30,18 @@ export const fetchAllRegionData = async (ags: string | null = null): Promise<Reg
 
 export const fetchDistricts = async (): Promise<RegionData[]> => {
   try {
-    const response = await axios.get(uri)
-    const responseObject = Object.keys(response.data.data)
+    const {
+      data: { data: districtObjects },
+    } = await axios.get(uri)
     const responseArray: RegionData[] = []
-    responseObject.forEach((value, index) => {
-      const agsValue = response.data.data[value].ags
-      const nameValue = response.data.data[value].name
-      responseArray.push({ idx: index, ags: agsValue, name: nameValue })
-      return { agsValue, nameValue }
-    })
+    if (typeof Object.keys(districtObjects) !== undefined && Object.keys(districtObjects).length > 0) {
+      Object.keys(districtObjects).forEach((value, index) => {
+        const agsValue = districtObjects[value as keyof string].ags
+        const nameValue = districtObjects[value as keyof string].name
+        responseArray.push({ idx: index, ags: agsValue, name: nameValue })
+        return { agsValue, nameValue }
+      })
+    }
     return responseArray
   } catch (error) {
     return error

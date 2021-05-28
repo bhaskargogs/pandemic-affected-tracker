@@ -37,17 +37,15 @@ const SelectDistrict: React.FC = () => {
   }, [histories])
 
   return (
-    <div>
-      {districtOptions.length ? (
+    <>
+      {districtOptions ? (
         <div className="m-3 d-flex justify-content-center">
           <SelectComponent labelId="district-select-label" id="district-select" label="Select District" value={region} onChange={regionHandler}>
-            {(districtOptions || []).map((district: RegionData) => {
-              return (
-                <MenuItem key={district.idx} value={district.ags}>
-                  {district.name}
-                </MenuItem>
-              )
-            })}
+            {districtOptions.map((district: RegionData) => (
+              <MenuItem key={district.idx} value={district.ags}>
+                {district.name}
+              </MenuItem>
+            ))}
           </SelectComponent>
           <SelectComponent labelId="days-select-label" id="days-select" label="Select Days" value={days} onChange={daysHandler}>
             <MenuItem value={7}>1 week</MenuItem>
@@ -59,13 +57,11 @@ const SelectDistrict: React.FC = () => {
           </SelectComponent>
         </div>
       ) : (
-        <div className="m-3 d-flex justify-content-center">
-          <p>Loading...</p>
-        </div>
+        <p>Loading...</p>
       )}
 
       <LineChart histories={historiesData} />
-    </div>
+    </>
   )
 }
 
