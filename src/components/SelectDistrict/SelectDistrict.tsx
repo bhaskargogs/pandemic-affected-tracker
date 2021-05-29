@@ -7,6 +7,7 @@ import SelectComponent from '../SelectComponent/SelectComponent'
 import './SelectDistrict.scss'
 
 const SelectDistrict: React.FC = () => {
+  const [loading, setLoading] = React.useState(true)
   const [histories, setHistories] = useState<Region[]>([])
   const [districtOptions, setDistrictOptions] = useState<RegionData[]>([])
   const [region, setRegion] = useState<string>('')
@@ -26,11 +27,12 @@ const SelectDistrict: React.FC = () => {
 
   const getDistricts = async () => {
     setDistrictOptions(await fetchDistricts())
+    setLoading(false)
   }
 
   useEffect(() => {
     getDistricts()
-  }, [])
+  }, [loading])
 
   const historiesData = useMemo(() => {
     return histories
@@ -38,14 +40,15 @@ const SelectDistrict: React.FC = () => {
 
   return (
     <>
-      {districtOptions ? (
+      {!loading ? (
         <div className="m-3 d-flex justify-content-center">
           <SelectComponent labelId="district-select-label" id="district-select" label="Select District" value={region} onChange={regionHandler}>
-            {districtOptions.map((district: RegionData) => (
-              <MenuItem key={district.idx} value={district.ags}>
-                {district.name}
-              </MenuItem>
-            ))}
+            {Array.isArray(districtOptions) &&
+              districtOptions.map((district: RegionData) => (
+                <MenuItem key={district.idx} value={district.ags}>
+                  {district.name}
+                </MenuItem>
+              ))}
           </SelectComponent>
           <SelectComponent labelId="days-select-label" id="days-select" label="Select Days" value={days} onChange={daysHandler}>
             <MenuItem value={7}>1 week</MenuItem>
@@ -57,7 +60,9 @@ const SelectDistrict: React.FC = () => {
           </SelectComponent>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className="m-3 d-flex justify-content-center">
+          <p>Loading...</p>
+        </div>
       )}
 
       <LineChart histories={historiesData} />
